@@ -4,6 +4,8 @@ import { Header } from '../Header';
 import { Post } from '../Post';
 import { ThemeProvider } from '../../Contexts/ThemeContext';
 
+import { Title } from './styles';
+
 export function App() {
   const [posts, setPosts] = useState([
     {
@@ -66,13 +68,13 @@ export function App() {
   return (
     <ThemeProvider>
       <Header title="JStack's Blog">
-        <h2>
+        <Title as="h2">
           Posts da Semana
           <Button type="button" onClick={handleRefresh}>
             {' '}
             Atualizar posts
           </Button>
-        </h2>
+        </Title>
       </Header>
 
       {posts.map((post) => (
