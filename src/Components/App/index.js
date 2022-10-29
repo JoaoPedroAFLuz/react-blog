@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from './Components/Button';
-import { Header } from './Components/Header';
-import { Post } from './Components/Post';
-import { ThemeProvider } from './Contexts/ThemeContext';
+import { Button } from '../Button';
+import { Header } from '../Header';
+import { Post } from '../Post';
+import { ThemeProvider } from '../../Contexts/ThemeContext';
 
 export function App() {
   const [posts, setPosts] = useState([
@@ -12,6 +12,7 @@ export function App() {
       subtitle: 'Subtítulo 01',
       read: true,
       likes: generateLikesValue(),
+      removed: true,
     },
     {
       id: Math.random(),
@@ -19,6 +20,7 @@ export function App() {
       subtitle: 'Subtítulo 02',
       read: false,
       likes: generateLikesValue(),
+      removed: false,
     },
     {
       id: Math.random(),
@@ -26,6 +28,7 @@ export function App() {
       subtitle: 'Subtítulo 03',
       read: false,
       likes: generateLikesValue(),
+      removed: false,
     },
   ]);
   const [postNumber, setPostNumber] = useState(posts.length + 1);
@@ -55,7 +58,9 @@ export function App() {
   }
 
   function handleRemovePost(postId) {
-    setPosts((prevState) => prevState.filter((post) => post.id !== postId));
+    setPosts((prevState) => prevState.map(
+      (post) => (post.id === postId ? { ...post, removed: true } : post),
+    ));
   }
 
   return (
