@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { PostHeader } from './PostHeader';
 
-import { Article, Likes } from './styles';
+import { Container, Likes } from './styles';
 
 export function Post({ info, onRemove }) {
   const {
-    id, title, subtitle, read, likes,
+    id, title, subtitle, read, likes, removed,
   } = info;
 
   return (
-    <Article>
+    <Container removed={removed}>
       <PostHeader
         info={{
           id,
@@ -24,7 +24,7 @@ export function Post({ info, onRemove }) {
         Curtidas:&nbsp;
         {likes}
       </Likes>
-    </Article>
+    </Container>
   );
 }
 
@@ -34,6 +34,7 @@ Post.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     read: PropTypes.bool.isRequired,
+    removed: PropTypes.bool.isRequired,
     likes: PropTypes.number.isRequired,
   }).isRequired,
   onRemove: PropTypes.func.isRequired,

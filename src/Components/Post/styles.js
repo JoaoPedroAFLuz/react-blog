@@ -1,7 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Article = styled.article`
+export const Container = styled.article`
   margin-bottom: 16px;
+
+  // Indívidual
+  /* opacity: ${({ removed }) => (removed ? 0.5 : 1)}; */
+
+  // Global
+  ${({ removed }) => css`
+    opacity: ${removed ? 0.5 : 1};
+  `}
 `;
 
 export const Likes = styled.span`
