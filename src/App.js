@@ -8,18 +8,21 @@ export function App() {
       id: Math.random(),
       title: 'Título 01',
       subtitle: 'Subtítulo 01',
+      read: true,
       likes: generateLikesValue(),
     },
     {
       id: Math.random(),
       title: 'Título 02',
       subtitle: 'Subtítulo 02',
+      read: false,
       likes: generateLikesValue(),
     },
     {
       id: Math.random(),
       title: 'Título 03',
       subtitle: 'Subtítulo 03',
+      read: false,
       likes: generateLikesValue(),
     },
   ]);
@@ -39,6 +42,7 @@ export function App() {
           postNumber < 10 ? `0${postNumber}` : postNumber
         }`,
         likes: generateLikesValue(),
+        read: false,
       },
     ]);
     handlePostNumber();

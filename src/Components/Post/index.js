@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 export function Post({ info, onRemove }) {
   const {
-    id, title, subtitle, likes,
+    id, title, subtitle, likes, read,
   } = info;
+
   return (
     <>
       <article>
-        <strong>{title}</strong>
+        <strong>
+          {read ? <s>{title}</s> : title}
+        </strong>
         <button type="button" onClick={() => onRemove(id)}>
           Remover
         </button>
@@ -31,6 +34,7 @@ Post.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired,
+    read: PropTypes.bool.isRequired,
   }).isRequired,
   onRemove: PropTypes.func.isRequired,
 };
