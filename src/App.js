@@ -2,6 +2,27 @@ import React from 'react';
 import { Header } from './Components/Header';
 import { Post } from './Components/Post';
 
+const posts = [
+  {
+    id: Math.random(),
+    title: 'Título 01',
+    subtitle: 'Subtítulo 01',
+    curtidas: 13,
+  },
+  {
+    id: Math.random(),
+    title: 'Título 02',
+    subtitle: 'Subtítulo 02',
+    curtidas: 7,
+  },
+  {
+    id: Math.random(),
+    title: 'Título 03',
+    subtitle: 'Subtítulo 03',
+    curtidas: 29,
+  },
+];
+
 export function App() {
   return (
     <>
@@ -9,27 +30,16 @@ export function App() {
         <h2>Posts da Semana</h2>
       </Header>
 
-      <Post
-        info={{
-          title: 'Título 01',
-          subtitle: 'Subtítulo 01',
-          likes: 13,
-        }}
-      />
-      <Post
-        info={{
-          title: 'Título 02',
-          subtitle: 'Subtítulo 02',
-          likes: 7,
-        }}
-      />
-      <Post
-        info={{
-          title: 'Título 03',
-          subtitle: 'Subtítulo 03',
-          likes: 29,
-        }}
-      />
+      {posts.map((post) => (
+        <Post
+          key={post.id}
+          info={{
+            title: post.title,
+            subtitle: post.subtitle,
+            curtidas: post.curtidas,
+          }}
+        />
+      ))}
     </>
   );
 }

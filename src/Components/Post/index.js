@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export function Post({ info }) {
-  const { title, subtitle, likes } = info;
+  const { title, subtitle, curtidas } = info;
   return (
     <>
       <article>
@@ -11,8 +11,8 @@ export function Post({ info }) {
         <small>{subtitle}</small>
         <br />
         <p>
-          Likes:
-          {likes}
+          Curtidas:&nbsp;
+          {curtidas}
         </p>
       </article>
       <br />
@@ -24,6 +24,6 @@ Post.propTypes = {
   info: PropTypes.shape({
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
-    likes: PropTypes.number.isRequired,
+    curtidas: PropTypes.number.isRequired,
   }).isRequired,
 };
