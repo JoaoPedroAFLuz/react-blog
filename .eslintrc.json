@@ -13,6 +13,7 @@
   "rules": {
     "react/jsx-filename-extension": "off",
     "import/prefer-default-export": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "react/jsx-no-bind": "off"
   }
 }

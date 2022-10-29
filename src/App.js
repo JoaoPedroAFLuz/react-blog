@@ -8,44 +8,48 @@ export function App() {
       id: Math.random(),
       title: 'Título 01',
       subtitle: 'Subtítulo 01',
-      curtidas: generateLikesValue(),
+      likes: generateLikesValue(),
     },
     {
       id: Math.random(),
       title: 'Título 02',
       subtitle: 'Subtítulo 02',
-      curtidas: generateLikesValue(),
+      likes: generateLikesValue(),
     },
     {
       id: Math.random(),
       title: 'Título 03',
       subtitle: 'Subtítulo 03',
-      curtidas: generateLikesValue(),
+      likes: generateLikesValue(),
     },
   ]);
+  const [postNumber, setPostNumber] = useState(posts.length + 1);
+
+  const handlePostNumber = () => {
+    setPostNumber((prevState) => prevState + 1);
+  };
 
   function handleRefresh() {
     setPosts((prevState) => [
       ...prevState,
       {
         id: Math.random(),
-        title: `Título ${
-          prevState.length + 1 < 10
-            ? `0${prevState.length + 1}`
-            : prevState.length + 1
-        }`,
+        title: `Título ${postNumber < 10 ? `0${postNumber}` : postNumber}`,
         subtitle: `Subtítulo ${
-          prevState.length + 1 < 10
-            ? `0${prevState.length + 1}`
-            : prevState.length + 1
+          postNumber < 10 ? `0${postNumber}` : postNumber
         }`,
-        curtidas: generateLikesValue(),
+        likes: generateLikesValue(),
       },
     ]);
+    handlePostNumber();
   }
 
   function generateLikesValue() {
     return Math.floor(Math.random() * 100);
+  }
+
+  function handleRemovePost(postId) {
+    setPosts((prevState) => prevState.filter((post) => post.id !== postId));
   }
 
   return (
@@ -60,11 +64,8 @@ export function App() {
       {posts.map((post) => (
         <Post
           key={post.id}
-          info={{
-            title: post.title,
-            subtitle: post.subtitle,
-            curtidas: post.curtidas,
-          }}
+          onRemove={handleRemovePost}
+          info={post}
         />
       ))}
     </>
