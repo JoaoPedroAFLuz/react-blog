@@ -1,23 +1,24 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { PostHeader } from './PostHeader';
 
 export function Post({ info, onRemove }) {
   const {
-    id, title, subtitle, likes, read,
+    id, title, subtitle, read, likes,
   } = info;
 
   return (
     <>
       <article>
-        <strong>
-          {read ? <s>{title}</s> : title}
-        </strong>
-        <button type="button" onClick={() => onRemove(id)}>
-          Remover
-        </button>
-        <br />
-        <small>{subtitle}</small>
-        <br />
+        <PostHeader
+          info={{
+            id,
+            title,
+            subtitle,
+            read,
+          }}
+          onRemove={onRemove}
+        />
         <p>
           Curtidas:&nbsp;
           {likes}
@@ -33,8 +34,8 @@ Post.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
-    likes: PropTypes.number.isRequired,
     read: PropTypes.bool.isRequired,
+    likes: PropTypes.number.isRequired,
   }).isRequired,
   onRemove: PropTypes.func.isRequired,
 };

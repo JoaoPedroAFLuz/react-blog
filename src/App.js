@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { Button } from './Components/Button';
 import { Header } from './Components/Header';
 import { Post } from './Components/Post';
+import { ThemeProvider } from './Contexts/ThemeContext';
 
 export function App() {
   const [posts, setPosts] = useState([
@@ -57,21 +59,20 @@ export function App() {
   }
 
   return (
-    <>
+    <ThemeProvider>
       <Header title="JStack's Blog">
-        <h2>Posts da Semana</h2>
-        <button type="button" onClick={handleRefresh}>
-          Atualizar posts
-        </button>
+        <h2>
+          Posts da Semana
+          <Button type="button" onClick={handleRefresh}>
+            {' '}
+            Atualizar posts
+          </Button>
+        </h2>
       </Header>
 
       {posts.map((post) => (
-        <Post
-          key={post.id}
-          onRemove={handleRemovePost}
-          info={post}
-        />
+        <Post key={post.id} onRemove={handleRemovePost} info={post} />
       ))}
-    </>
+    </ThemeProvider>
   );
 }
