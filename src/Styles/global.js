@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+export default createGlobalStyle`
   body {
-    background: #222222;
-    color: #dddddd;
-    font-family: 'Roboto' ,sans-serif;
+    background: #222;
+    color: #fff;
+    font-family: sans-serif;
   }
 `;
