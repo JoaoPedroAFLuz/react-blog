@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.header`
-  background: ${({ theme }) => theme.headerBackgroundColor};
+  background: ${({ theme }) => theme.style.headerBackgroundColor};
   height: 100px;
   display: flex;
   align-items: center;

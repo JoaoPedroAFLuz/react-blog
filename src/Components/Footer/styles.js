@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.footer`
-  background: ${({ theme }) => theme.footerBackgroundColor};
+  background: ${({ theme }) => theme.style.footerBackgroundColor};
   height: 70px;
   display: flex;
   align-items: center;
