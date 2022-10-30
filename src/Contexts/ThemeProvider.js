@@ -13,7 +13,7 @@ function ThemeProvider({ children }) {
 
   const providerProps = useMemo(
     () => ({
-      style: themes[theme] || themes.dark,
+      styles: themes[theme] || themes.dark,
       selectedTheme: theme,
       onToggleTheme: handleToggleTheme,
     }),

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export default styled.footer`
-  background: ${({ theme }) => theme.style.footerBackgroundColor};
+  background: ${({ theme }) => theme.styles.footerBackgroundColor};
   height: 70px;
   display: flex;
   align-items: center;
-  padding: 0 24px;
-  border-radius: 10px;
+  padding: 0 ${({ theme }) => theme.styles.spacing.large};
+  border-radius: ${({ theme }) => theme.styles.borderRadius};
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.styles.spacing.large};
   button {
     cursor: pointer;
     background: transparent;
