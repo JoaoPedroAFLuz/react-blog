@@ -1,17 +1,24 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Container from './styles';
 
-export default function Header() {
-  const { selectedTheme, onToggleTheme } = useTheme();
+export default class Header extends React.Component {
+  render() {
+    const { onToggleTheme, selectedTheme } = this.props;
 
-  return (
-    <Container>
-      <h1>JStack&apos;s Blog</h1>
-      <button type="button" onClick={onToggleTheme}>
-        {selectedTheme === 'dark' ? '🌞' : '🌚'}
-      </button>
-    </Container>
-  );
+    return (
+      <Container>
+        <h1>JStack&apos;s Blog</h1>
+        <button type="button" onClick={onToggleTheme}>
+          {selectedTheme === 'dark' ? '🌞' : '🌚'}
+        </button>
+      </Container>
+    );
+  }
 }
+
+Header.propTypes = {
+  onToggleTheme: PropTypes.func.isRequired,
+  selectedTheme: PropTypes.string.isRequired,
+};
