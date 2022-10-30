@@ -12,7 +12,7 @@ export default function Layout() {
     <>
       <Header selectedTheme={selectedTheme} onToggleTheme={onToggleTheme} />
       <PostList />
-      <Footer />
+      <Footer selectedTheme={selectedTheme} onToggleTheme={onToggleTheme} />
     </>
   );
 }
