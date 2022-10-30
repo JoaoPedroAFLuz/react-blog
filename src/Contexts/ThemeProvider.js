@@ -1,35 +1,40 @@
 import PropTypes from 'prop-types';
-import React, {
-  useCallback, useEffect, useMemo, useState,
-} from 'react';
+import React from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 import themes from '../Styles/themes';
 
-function ThemeProvider({ children }) {
-  const localStorageTheme = localStorage.getItem('theme');
-  const [theme, setTheme] = useState(localStorageTheme || 'dark');
+class ThemeProvider extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const handleToggleTheme = useCallback(() => {
-    setTheme((prevState) => (prevState === 'dark' ? 'light' : 'dark'));
-  }, []);
+    this.state = {
+      selectedTheme: 'dark',
+    };
+  }
 
-  const providerProps = useMemo(
-    () => ({
-      styles: themes[theme] || themes.dark,
-      selectedTheme: theme,
-      onToggleTheme: handleToggleTheme,
-    }),
-    [theme],
-  );
+  handleToggleTheme = () => {
+    this.setState((prevState) => ({
+      selectedTheme: prevState.selectedTheme === 'dark' ? 'light' : 'dark',
+    }));
+  };
 
-  useEffect(() => {
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+  render() {
+    const { selectedTheme } = this.state;
+    const { children } = this.props;
 
-  return (
-    <StyledThemeProvider theme={providerProps}>{children}</StyledThemeProvider>
-  );
+    return (
+      <StyledThemeProvider
+        theme={{
+          styles: themes[selectedTheme] || themes.dark,
+          selectedTheme,
+          onToggleTheme: this.handleToggleTheme,
+        }}
+      >
+        {children}
+      </StyledThemeProvider>
+    );
+  }
 }
 
 export default ThemeProvider;
