@@ -8,9 +8,27 @@ class ThemeProvider extends React.Component {
   constructor(props) {
     super(props);
 
+    let selectedTheme = 'dark';
+
+    try {
+      if (JSON.parse(localStorage.getItem('theme'))) {
+        selectedTheme = JSON.parse(localStorage.getItem('theme'));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
     this.state = {
-      selectedTheme: 'dark',
+      selectedTheme,
     };
+  }
+
+  componentDidUpdate(_, prevState) {
+    const { selectedTheme } = this.state;
+
+    if (prevState.selectedTheme !== selectedTheme) {
+      localStorage.setItem('theme', JSON.stringify(selectedTheme));
+    }
   }
 
   handleToggleTheme = () => {
@@ -21,6 +39,7 @@ class ThemeProvider extends React.Component {
 
   render() {
     const { selectedTheme } = this.state;
+
     const { children } = this.props;
 
     return (
