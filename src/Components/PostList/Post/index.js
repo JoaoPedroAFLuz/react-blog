@@ -1,15 +1,28 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import Container from './styles';
 
-export default function Post({ title, description }) {
-  return (
-    <Container>
-      <h2>{title}</h2>
-      <small>{description}</small>
-    </Container>
-  );
+export default class Post extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: props.title,
+      description: props.description,
+    };
+  }
+
+  render() {
+    const { title, description } = this.state;
+
+    return (
+      <Container>
+        <h2>{title}</h2>
+        <small>{description}</small>
+      </Container>
+    );
+  }
 }
 
 Post.propTypes = {
