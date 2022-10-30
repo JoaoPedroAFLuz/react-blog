@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { useMemo, useState } from 'react';
+import React, {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 import themes from '../Styles/themes';
 
 function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('dark');
+  const localStorageTheme = localStorage.getItem('theme');
+  const [theme, setTheme] = useState(localStorageTheme || 'dark');
 
-  function handleToggleTheme() {
+  const handleToggleTheme = useCallback(() => {
     setTheme((prevState) => (prevState === 'dark' ? 'light' : 'dark'));
-  }
+  }, []);
 
   const providerProps = useMemo(
     () => ({
@@ -19,6 +22,10 @@ function ThemeProvider({ children }) {
     }),
     [theme],
   );
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   return (
     <StyledThemeProvider theme={providerProps}>{children}</StyledThemeProvider>
