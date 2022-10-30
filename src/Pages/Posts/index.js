@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Container from './styles';
 import Post from './Post';
+import Container from './styles';
 
 import posts from './posts';
 
