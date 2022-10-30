@@ -13,6 +13,8 @@
   "rules": {
     "react/jsx-filename-extension": "off",
     "no-use-before-define": "off",
-    "react/jsx-no-bind": "off"
+    "react/jsx-no-bind": "off",
+    // Allow class components
+    "react/prefer-stateless-function": "off"
   }
 }
